@@ -12,7 +12,7 @@ public class TheHistoryArray implements TheHistory {
     @Override
     public void add(String text) {
         //TODO: check the TheHistory interface for more information
-        String[] wordsAdded = Arrays.copyOf(wordsArray, 1);
+        String[] wordsAdded = Arrays.copyOf(wordsArray, wordsArray.length()+1);
         wordsAdded[0] = text;
     }
 
