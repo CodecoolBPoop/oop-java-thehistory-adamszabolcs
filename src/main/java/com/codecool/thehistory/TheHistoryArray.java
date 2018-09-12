@@ -64,8 +64,39 @@ public class TheHistoryArray implements TheHistory {
     public void replaceMoreWords(String[] fromWords, String[] toWords) {
         //TODO: check the TheHistory interface for more information
         if (fromWords.length == toWords.length) {
-            for (int i = 0; i < wordsArray.length; i++) {
-
+            if (fromWords.length == wordsArray.length) {
+                wordsArray = toWords;
+            } else {
+                String[] check = new String[fromWords.length];
+                for (int i = 0; i < wordsArray.length; i++) {
+                    if (wordsArray[i].equals(fromWords[0])) {
+                        for (int j = 0; j < check.length; j++) {
+                            check[j] = wordsArray[i + j];
+                        }
+                        if (Arrays.equals(fromWords, check)) {
+                            for (int k = 0; k < check.length; k++) {
+                                wordsArray[i + k] = toWords[k];
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            if (fromWords.length < toWords.length) {
+                int difference = toWords.length - fromWords.length;
+                wordsArray = Arrays.copyOf(wordsArray, wordsArray.length + difference);
+                String[] newWordsArray = new String[wordsArray.length];
+                String[] check = new String[fromWords.length];
+                for (int i = 0; i<wordsArray.length; i++) {
+                    if (wordsArray[i].equals(fromWords[0])) {
+                        for (int j = 0; j < check.length; j++) {
+                            check[j] = wordsArray[i + j];
+                        }
+//                        if (Arrays.equals(fromWords, check)) {
+//                            System.arraycopy();
+//                        }
+                    }
+                }
             }
         }
     }
