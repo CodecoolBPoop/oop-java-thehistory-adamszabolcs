@@ -81,24 +81,24 @@ public class TheHistoryArray implements TheHistory {
                     }
                 }
             }
-        } else {
-            if (fromWords.length < toWords.length) {
-                int difference = toWords.length - fromWords.length;
-                wordsArray = Arrays.copyOf(wordsArray, wordsArray.length + difference);
-                String[] newWordsArray = new String[wordsArray.length];
-                String[] check = new String[fromWords.length];
-                for (int i = 0; i<wordsArray.length; i++) {
-                    if (wordsArray[i].equals(fromWords[0])) {
-                        for (int j = 0; j < check.length; j++) {
-                            check[j] = wordsArray[i + j];
-                        }
+        } // else {
+//            if (fromWords.length < toWords.length) {
+//                int difference = toWords.length - fromWords.length;
+//                wordsArray = Arrays.copyOf(wordsArray, wordsArray.length + difference);
+//                String[] newWordsArray = new String[wordsArray.length];
+//                String[] check = new String[fromWords.length];
+//                for (int i = 0; i<wordsArray.length; i++) {
+//                    if (wordsArray[i].equals(fromWords[0])) {
+//                        for (int j = 0; j < check.length; j++) {
+//                            check[j] = wordsArray[i + j];
+//                        }
 //                        if (Arrays.equals(fromWords, check)) {
 //                            System.arraycopy();
 //                        }
-                    }
-                }
-            }
-        }
+//                    }
+//                }
+//            }
+//        }
     }
 
     @Override
