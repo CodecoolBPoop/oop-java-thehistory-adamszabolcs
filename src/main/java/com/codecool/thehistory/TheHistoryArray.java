@@ -29,9 +29,7 @@ public class TheHistoryArray implements TheHistory {
         String[] arrayWithoutRemovedWord = new String[wordsArray.length-counter];
         int indexCounter = 0;
         for (String word : wordsArray) {
-            if (word.equals(wordToBeRemoved)) {
-                continue;
-            } else {
+            if (!word.equals(wordToBeRemoved)) {
                 arrayWithoutRemovedWord[indexCounter] = word;
                 indexCounter++;
             }
