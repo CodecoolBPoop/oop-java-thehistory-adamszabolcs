@@ -17,11 +17,8 @@ public class TheHistoryArrayList implements TheHistory {
     @Override
     public void removeWord(String wordToBeRemoved) {
         //TODO: check the TheHistory interface for more information
-        for (int i = 0; i < wordsArrayList.size(); i++ ) {
-            if (wordsArrayList.get(i).equals(wordToBeRemoved)) {
-                wordsArrayList.remove(wordsArrayList.get(i));
-            }
-        }
+        List<String> remove = new ArrayList<>(Arrays.asList(wordToBeRemoved));
+        wordsArrayList.removeAll(remove);
     }
 
     @Override
