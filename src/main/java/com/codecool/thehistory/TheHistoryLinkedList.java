@@ -36,14 +36,12 @@ public class TheHistoryLinkedList implements TheHistory {
     @Override
     public void replaceOneWord(String from, String to) {
         //TODO: check the TheHistory interface for more information
-        Iterator<String> iterator = wordsLinkedList.iterator();
-        int counter = 0;
-        while (iterator.hasNext()) {
-            String next = iterator.next();
-            if (next.equals(from)) {
-                wordsLinkedList.set(counter, to);
+        ListIterator<String> listIterator = wordsLinkedList.listIterator();
+        while(listIterator.hasNext()) {
+            String nextWord = listIterator.next();
+            if (nextWord.equals(from)) {
+                listIterator.set(to);
             }
-            counter++;
         }
     }
 

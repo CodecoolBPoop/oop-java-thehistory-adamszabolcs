@@ -30,7 +30,7 @@ public class TheHistoryArrayList implements TheHistory {
     @Override
     public void clear() {
         //TODO: check the TheHistory interface for more information
-        wordsArrayList = new ArrayList<String>();
+        wordsArrayList.remove(wordsArrayList);
     }
 
     @Override
@@ -46,6 +46,55 @@ public class TheHistoryArrayList implements TheHistory {
     @Override
     public void replaceMoreWords(String[] fromWords, String[] toWords) {
         //TODO: check the TheHistory interface for more information
+        if (fromWords.length == toWords.length) {
+            replaceEqualWords(fromWords, toWords, wordsArrayList);
+        } else {
+            if (fromWords.length < toWords.length) {
+                replaceMoreToWords(fromWords, toWords, wordsArrayList);
+            } else {
+                replaceMoreFromWords(fromWords, toWords, wordsArrayList);
+            }
+        }
+    }
+
+    public void replaceEqualWords(String[] fromWords, String[] toWords, List<String> wordsArrayList) {
+        if (fromWords.length == wordsArrayList.size()) {
+            wordsArrayList = Arrays.asList(toWords);
+        } else {
+            for (int i = 0; i < wordsArrayList.size(); i++) {
+                if (wordsArrayList.get(i).equals(fromWords[0])) {
+                    List<String> fromWordsArrayList = Arrays.asList(fromWords);
+                    if ((i + fromWordsArrayList.size()) < wordsArrayList.size() - 1) {
+                        ArrayList<String> check = new ArrayList<String>(wordsArrayList.subList(i, i + fromWordsArrayList.size()));
+                        if (check.equals(fromWordsArrayList)) {
+                            for (int j = 0; j < toWords.length; j++) {
+                                wordsArrayList.set(i + j, toWords[j]);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public void replaceMoreToWords(String[] fromWords, String[] toWords, List<String> wordsArrayList) {
+        for (int i = 0; i < wordsArrayList.size(); i++) {
+            if (wordsArrayList.get(i).equals(fromWords[0])) {
+                List<String> fromWordsArrayList = Arrays.asList(fromWords);
+                if ((i + fromWordsArrayList.size()) < wordsArrayList.size() - 1) {
+                    ArrayList<String> check = new ArrayList<String>(wordsArrayList.subList(i, i + fromWordsArrayList.size()));
+                    if (check.equals(fromWordsArrayList)) {
+                        for (int j = 0; j < toWords.length; j++) {
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public void replaceMoreFromWords(String[] fromWords, String[] toWords, List<String> wordsArrayList) {
+        System.out.println("Here I am");
     }
 
     @Override
