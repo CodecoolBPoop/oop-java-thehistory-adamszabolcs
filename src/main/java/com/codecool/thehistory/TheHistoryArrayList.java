@@ -64,7 +64,7 @@ public class TheHistoryArrayList implements TheHistory {
             for (int i = 0; i < wordsArrayList.size(); i++) {
                 if (wordsArrayList.get(i).equals(fromWords[0])) {
                     List<String> fromWordsArrayList = Arrays.asList(fromWords);
-                    if ((i + fromWordsArrayList.size()) < wordsArrayList.size() - 1) {
+                    if ((i + fromWordsArrayList.size()) < wordsArrayList.size()) {
                         ArrayList<String> check = new ArrayList<String>(wordsArrayList.subList(i, i + fromWordsArrayList.size()));
                         if (check.equals(fromWordsArrayList)) {
                             for (int j = 0; j < toWords.length; j++) {
@@ -78,14 +78,27 @@ public class TheHistoryArrayList implements TheHistory {
     }
 
     public void replaceMoreToWords(String[] fromWords, String[] toWords, List<String> wordsArrayList) {
-        for (int i = 0; i < wordsArrayList.size(); i++) {
-            if (wordsArrayList.get(i).equals(fromWords[0])) {
-                List<String> fromWordsArrayList = Arrays.asList(fromWords);
-                if ((i + fromWordsArrayList.size()) < wordsArrayList.size() - 1) {
-                    ArrayList<String> check = new ArrayList<String>(wordsArrayList.subList(i, i + fromWordsArrayList.size()));
+        List<String> fromWordsArrayList = Arrays.asList(fromWords);
+        ListIterator<String> listIterator = wordsArrayList.listIterator();
+        while(listIterator.hasNext()) {
+            String word = listIterator.next();
+            int wordIndex = listIterator.nextIndex()-1;
+            int prevWordIndex = listIterator.previousIndex()-1;
+            if (word.equals(fromWords[0]) && !wordsArrayList.get(prevWordIndex).equals(toWords[0])) {
+                if ((wordIndex + fromWordsArrayList.size()) <= wordsArrayList.size()|| fromWordsArrayList.size() == 1) {
+                    ArrayList<String> check = new ArrayList<String>(wordsArrayList.subList(wordIndex, wordIndex + fromWordsArrayList.size()));
                     if (check.equals(fromWordsArrayList)) {
-                        for (int j = 0; j < toWords.length; j++) {
-
+                        int i = 0;
+                        while (i < toWords.length) {
+                            if (i < fromWords.length) {
+                                if (i > 0 && listIterator.hasNext()) {
+                                    listIterator.next();
+                                }
+                                listIterator.set(toWords[i]);
+                            } else {
+                                listIterator.add(toWords[i]);
+                            }
+                            i++;
                         }
                     }
                 }
@@ -94,7 +107,33 @@ public class TheHistoryArrayList implements TheHistory {
     }
 
     public void replaceMoreFromWords(String[] fromWords, String[] toWords, List<String> wordsArrayList) {
-        System.out.println("Here I am");
+        List<String> fromWordsArrayList = Arrays.asList(fromWords);
+        ListIterator<String> listIterator = wordsArrayList.listIterator();
+        while(listIterator.hasNext()) {
+            String word = listIterator.next();
+            int wordIndex = listIterator.nextIndex()-1;
+            int prevWordIndex = listIterator.previousIndex()-1;
+            if (word.equals(fromWords[0])) {
+                if ((wordIndex + fromWordsArrayList.size()) <= wordsArrayList.size()|| fromWordsArrayList.size() == 1) {
+                    ArrayList<String> check = new ArrayList<String>(wordsArrayList.subList(wordIndex, wordIndex + fromWordsArrayList.size()));
+                    if (check.equals(fromWordsArrayList)) {
+                        int i = 0;
+                        while (i < fromWords.length) {
+                            if (i < toWords.length) {
+                                if (i > 0 && listIterator.hasNext()) {
+                                    listIterator.next();
+                                }
+                                listIterator.set(toWords[i]);
+                            } else {
+                                listIterator.next();
+                                listIterator.remove();
+                            }
+                            i++;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     @Override
